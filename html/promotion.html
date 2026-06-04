@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DZbnb – Promotions & Avantages</title>
+<link href="../image/kabylemontain.png" rel="stylesheet">
+<style>
+:root {
+  --green:       #2d5a27;
+  --green-light: #4a7c42;
+  --green-pale:  #e8f0e6;
+  --green-dark:  #1a3a16;
+  --gold:        #c9a84c;
+  --gold-light:  #f0d080;
+  --bg:          #f7f5f0;
+  --white:       #ffffff;
+  --text:        #1a1a1a;
+  --muted:       #6b6b6b;
+  --border:      #e0ddd8;
+  --radius:      14px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;}
+
+/* ── NAVBAR ── */
+.navbar{background:var(--white);border-bottom:1px solid var(--border);padding:0 48px;height:64px;display:flex;align-items:center;position:sticky;top:0;z-index:200;}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:1280px;margin:0 auto;}
+.logo{display:flex;align-items:center;gap:8px;text-decoration:none;}
+.logo-icon{width:32px;height:32px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;}
+.logo-dz{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--text);}
+.logo-bnb{font-family:'Playfair Display',serif;font-size:20px;color:#b5651d;}
+.nav-links{display:flex;gap:32px;list-style:none;}
+.nav-links a{text-decoration:none;color:var(--muted);font-size:14px;font-weight:500;transition:color .2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--text);}
+.nav-right{display:flex;align-items:center;gap:12px;}
+.lang-btn{font-size:13px;color:var(--muted);cursor:pointer;padding:6px 10px;border-radius:20px;border:1px solid var(--border);}
+.btn-connexion{padding:9px 20px;background:var(--green);color:white;border:none;border-radius:50px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;transition:background .2s;}
+.btn-connexion:hover{background:var(--green-light);}
+
+/* ── HERO ── */
+.promo-hero{
+  background: linear-gradient(135deg, var(--green-dark) 0%, #2a5224 50%, #1e3d1a 100%);
+  padding: 90px 48px 80px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.promo-hero::before{
+  content:'';position:absolute;inset:0;
+  background:url('../image/kabylemontain.png') center/cover;
+  opacity:.12;
+}
+.promo-hero::after{
+  content:'';position:absolute;inset:0;
+  background: radial-gradient(ellipse at center, transparent 30%, rgba(26,58,22,.7) 100%);
+}
+.hero-content{position:relative;z-index:2;max-width:700px;margin:0 auto;}
+.hero-tag{display:inline-block;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:rgba(255,255,255,.85);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:5px 14px;border-radius:50px;margin-bottom:20px;}
+.promo-hero h1{font-family:'Playfair Display',serif;font-size:clamp(40px,6vw,72px);font-weight:900;color:white;line-height:1.05;margin-bottom:10px;}
+.promo-hero h1 em{color:var(--gold-light);font-style:italic;}
+.promo-hero .sub{color:rgba(255,255,255,.7);font-size:15px;margin-bottom:10px;}
+.promo-hero p{color:rgba(255,255,255,.65);font-size:14px;max-width:520px;margin:0 auto 32px;line-height:1.7;}
+.btn-hero{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;background:var(--gold);color:var(--green-dark);border:none;border-radius:50px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;cursor:pointer;text-decoration:none;transition:background .2s,transform .15s;}
+.btn-hero:hover{background:var(--gold-light);transform:translateY(-2px);}
+
+/* ── SECTION WRAPPER ── */
+.section{padding:80px 48px;}
+.section-inner{max-width:1200px;margin:0 auto;}
+.section-tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--green);background:var(--green-pale);padding:4px 12px;border-radius:50px;margin-bottom:14px;}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,44px);font-weight:900;color:var(--text);margin-bottom:8px;}
+.section-sub{color:var(--muted);font-size:15px;margin-bottom:48px;}
+
+/* ── HOW IT WORKS ── */
+.hiw-section{background:var(--white);}
+.hiw-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-bottom:40px;}
+.hiw-step{padding:28px 24px;border:1px solid var(--border);border-radius:var(--radius);position:relative;transition:box-shadow .2s,transform .2s;}
+.hiw-step:hover{box-shadow:0 8px 32px rgba(0,0,0,.08);transform:translateY(-4px);}
+.step-num{width:36px;height:36px;background:var(--green);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;margin-bottom:16px;}
+.hiw-step h3{font-size:16px;font-weight:700;margin-bottom:8px;}
+.hiw-step p{font-size:13px;color:var(--muted);line-height:1.6;}
+.hiw-step .arrow{position:absolute;right:-18px;top:50%;transform:translateY(-50%);font-size:22px;color:var(--border);z-index:1;}
+.hiw-step:last-child .arrow{display:none;}
+.hiw-note{background:var(--green-pale);border-left:4px solid var(--green);border-radius:10px;padding:18px 24px;display:flex;align-items:flex-start;gap:12px;}
+.hiw-note .note-icon{font-size:20px;flex-shrink:0;margin-top:2px;}
+.hiw-note p{font-size:13px;color:var(--text);line-height:1.6;}
+
+/* ── RESTAURANTS ── */
+.resto-section{background:var(--bg);}
+.resto-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.resto-card{background:var(--white);border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);transition:box-shadow .2s,transform .2s;}
+.resto-card:hover{box-shadow:0 10px 40px rgba(0,0,0,.1);transform:translateY(-4px);}
+.resto-img{position:relative;height:180px;overflow:hidden;}
+.resto-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s;}
+.resto-card:hover .resto-img img{transform:scale(1.05);}
+.resto-badges{position:absolute;top:10px;left:10px;display:flex;gap:6px;flex-wrap:wrap;}
+.badge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:50px;}
+.badge-red{background:#e74c3c;color:white;}
+.badge-green{background:var(--green);color:white;}
+.badge-gold{background:var(--gold);color:var(--green-dark);}
+.badge-blue{background:#3498db;color:white;}
+.resto-body{padding:16px;}
+.resto-name{font-weight:700;font-size:15px;margin-bottom:2px;}
+.resto-loc{font-size:12px;color:var(--muted);margin-bottom:8px;}
+.resto-rating{display:flex;align-items:center;gap:4px;font-size:13px;margin-bottom:8px;}
+.resto-rating .star{color:#f5a623;}
+.resto-desc{font-size:12px;color:var(--muted);line-height:1.5;margin-bottom:12px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+.btn-voir-plus{font-size:12px;color:var(--green);font-weight:600;text-decoration:none;cursor:pointer;background:none;border:none;padding:0;}
+.btn-voir-plus:hover{text-decoration:underline;}
+
+/* ── CIRCUITS ── */
+.circuits-section{background:var(--white);}
+.circuits-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
+.circuit-card{border:1px solid var(--border);border-radius:var(--radius);padding:24px;display:flex;flex-direction:column;gap:12px;transition:box-shadow .2s,transform .2s;position:relative;overflow:hidden;}
+.circuit-card:hover{box-shadow:0 8px 32px rgba(0,0,0,.08);transform:translateY(-3px);}
+.circuit-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+.circuit-card.facile::before{background:var(--green);}
+.circuit-card.moyen::before{background:var(--gold);}
+.circuit-card.sport::before{background:#e74c3c;}
+.circuit-top{display:flex;justify-content:space-between;align-items:flex-start;}
+.circuit-tag{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:50px;}
+.tag-facile{background:#e8f0e6;color:var(--green);}
+.tag-moyen{background:#fef3dc;color:#b8860b;}
+.tag-sport{background:#fde8e8;color:#c0392b;}
+.circuit-price{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--green);}
+.circuit-name{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--text);}
+.circuit-desc{font-size:13px;color:var(--muted);line-height:1.6;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.circuit-tags{display:flex;gap:8px;flex-wrap:wrap;}
+.ctag{font-size:11px;background:var(--bg);border:1px solid var(--border);padding:3px 10px;border-radius:50px;color:var(--muted);}
+.circuit-meta{display:flex;gap:20px;font-size:12px;color:var(--muted);}
+.circuit-meta span{display:flex;align-items:center;gap:4px;}
+.circuit-date{font-size:12px;color:var(--green);font-weight:600;margin-top:4px;}
+.btn-circuit{align-self:flex-start;padding:9px 20px;background:var(--green);color:white;border:none;border-radius:50px;font-size:13px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .2s;}
+.btn-circuit:hover{background:var(--green-light);}
+
+/* ── SAISONS ── */
+.saisons-section{background:var(--bg);}
+.saisons-tabs{display:flex;gap:8px;margin-bottom:36px;}
+.saison-tab{padding:9px 20px;border-radius:50px;border:1.5px solid var(--border);background:var(--white);font-size:13px;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all .2s;font-family:'DM Sans',sans-serif;}
+.saison-tab.active{background:var(--green);color:white;border-color:var(--green);}
+.saison-tab:hover:not(.active){border-color:var(--green);color:var(--green);}
+.saison-content{display:none;}
+.saison-content.active{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;}
+.saison-img{border-radius:var(--radius);overflow:hidden;height:340px;}
+.saison-img img{width:100%;height:100%;object-fit:cover;}
+.saison-info h3{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;margin-bottom:12px;color:var(--text);}
+.saison-badge{display:inline-flex;align-items:center;gap:6px;background:var(--green-pale);color:var(--green);font-size:12px;font-weight:600;padding:4px 12px;border-radius:50px;margin-bottom:12px;}
+.saison-info p{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:20px;}
+.saison-list{display:flex;flex-direction:column;gap:8px;}
+.saison-list li{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text);}
+.saison-list li::before{content:'✓';color:var(--green);font-weight:700;font-size:14px;}
+
+/* ── CTA ── */
+.cta-section{background:var(--green-dark);padding:80px 48px;text-align:center;position:relative;overflow:hidden;}
+.cta-section::before{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1200&q=50') center/cover;opacity:.08;}
+.cta-inner{position:relative;z-index:2;max-width:600px;margin:0 auto;}
+.cta-section h2{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,48px);font-weight:900;color:white;margin-bottom:12px;}
+.cta-section p{color:rgba(255,255,255,.65);font-size:15px;margin-bottom:32px;}
+.cta-form{display:flex;gap:8px;max-width:420px;margin:0 auto;}
+.cta-form input{flex:1;padding:13px 18px;border:none;border-radius:50px;font-family:'DM Sans',sans-serif;font-size:14px;outline:none;}
+.cta-form button{padding:13px 24px;background:var(--gold);color:var(--green-dark);border:none;border-radius:50px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap;transition:background .2s;}
+.cta-form button:hover{background:var(--gold-light);}
+
+/* ── FOOTER ── */
+footer{background:var(--green-dark);padding:60px 48px 30px;}
+.footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr 1.5fr;gap:48px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.1);}
+.footer-brand h3{font-family:'Playfair Display',serif;font-size:20px;color:white;margin-bottom:8px;}
+.footer-brand p{font-size:13px;color:rgba(255,255,255,.5);line-height:1.6;}
+.footer-col h4{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:16px;}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.footer-col ul li a{font-size:13px;color:rgba(255,255,255,.6);text-decoration:none;transition:color .2s;}
+.footer-col ul li a:hover{color:white;}
+.newsletter-footer{display:flex;gap:6px;margin-top:4px;}
+.newsletter-footer input{flex:1;padding:10px 14px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.08);color:white;border-radius:8px;font-size:13px;outline:none;font-family:'DM Sans',sans-serif;}
+.newsletter-footer input::placeholder{color:rgba(255,255,255,.35);}
+.newsletter-footer button{padding:10px 14px;background:var(--green);color:white;border:none;border-radius:8px;cursor:pointer;font-size:16px;transition:background .2s;}
+.newsletter-footer button:hover{background:var(--green-light);}
+.footer-bottom{max-width:1200px;margin:24px auto 0;display:flex;justify-content:space-between;align-items:center;}
+.footer-bottom p{font-size:12px;color:rgba(255,255,255,.3);}
+.footer-logo-bg{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:rgba(255,255,255,.06);letter-spacing:-2px;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .hiw-steps,.resto-grid,.circuits-grid{grid-template-columns:1fr 1fr;}
+  .saison-content.active{grid-template-columns:1fr;}
+  .footer-inner{grid-template-columns:1fr 1fr;}
+  .navbar{padding:0 20px;}
+  .section{padding:60px 24px;}
+  .promo-hero{padding:70px 24px 60px;}
+}
+@media(max-width:600px){
+  .hiw-steps,.resto-grid,.circuits-grid{grid-template-columns:1fr;}
+  .hiw-step .arrow{display:none;}
+  .nav-links{display:none;}
+  .cta-form{flex-direction:column;}
+  .footer-inner{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- la barre de navi  -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="../index.html" class="logo">
+      <div class="logo-icon">🏠</div>
+      <span class="logo-dz">DZ</span><span class="logo-bnb">bnb</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Accueil</a></li>
+      <li><a href="../html/logements.html">Logements</a></li>
+      <li><a href="../html/promotion.html" class="active">Promotions</a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="lang-btn">🇫🇷 FR ▾</div>
+      <button class="btn-connexion" onclick="window.location.href='../html/connexion.html'">👤 Connexion</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="promo-hero">
+  <div class="hero-content">
+    <span class="hero-tag">Offres exclusives</span>
+    <h1>Plus qu'un<br><em>logement</em></h1>
+    <p class="sub">Tout un univers d'avantages</p>
+    <p>Réservez votre séjour et débloquez des remises exclusives chez nos restaurants partenaires, sur nos voyages organisés et bien plus. L'authenticité algérienne n'a jamais eu autant d'avantages.</p>
+    <a href="#avantages" class="btn-hero">Découvrir les avantages →</a>
+  </div>
+</section>
+
+<!-- comments sa marche -->
+<section class="section hiw-section" id="avantages">
+  <div class="section-inner">
+    <div style="text-align:center;margin-bottom:48px">
+      <span class="section-tag">Comment ça marche</span>
+      <h2 class="section-title">Réservez, profitez, économisez</h2>
+    </div>
+    <div class="hiw-steps">
+      <div class="hiw-step">
+        <div class="step-num">1</div>
+        <div style="font-size:28px;margin-bottom:12px">🏠</div>
+        <h3>Réservez votre logement</h3>
+        <p>Choisissez parmi nos centaines de logements vérifiés à travers les 58 wilayas d'Algérie. Une réservation = un passeport vers vos avantages.</p>
+        <span class="arrow">→</span>
+      </div>
+      <div class="hiw-step">
+        <div class="step-num">2</div>
+        <div style="font-size:28px;margin-bottom:12px">🎟️</div>
+        <h3>Recevez vos codes promo</h3>
+        <p>À confirmation de votre réservation, vous recevez automatiquement des codes de réduction chez nos restaurants partenaires et voyages organisés.</p>
+        <span class="arrow">→</span>
+      </div>
+      <div class="hiw-step">
+        <div class="step-num">3</div>
+        <div style="font-size:28px;margin-bottom:12px">🍽️</div>
+        <h3>Profitez de vos remises</h3>
+        <p>Présentez votre code chez nos partenaires et bénéficiez de réductions exclusives allant de 15% à 30%. Bon appétit et bon voyage !</p>
+      </div>
+    </div>
+    <div class="hiw-note">
+      <span class="note-icon">💡</span>
+      <p>Un séjour DZbnb inclut ainsi bien qu'un lit – des réductions chez les meilleurs restaurants, des tarifs préférentiels sur nos voyages organisés algériens, et des surprises locales.</p>
+    </div>
+  </div>
+</section>
+
+<!-- RESTAURANTS -->
+<section class="section resto-section">
+  <div class="section-inner">
+    <div style="text-align:center;margin-bottom:48px">
+      <span class="section-tag">Restaurants partenaires</span>
+      <h2 class="section-title">Savourez l'Algérie avec des remises exclusives</h2>
+    </div>
+    <div class="resto-grid">
+
+      <div class="resto-card">
+        <div class="resto-img">
+          <img src="../image/resto1.png" alt="Dar Risk">
+          <div class="resto-badges">
+            <span class="badge badge-red">-25% de remise</span>
+            <span class="badge badge-green">Gastronomique</span>
+            <span class="badge badge-gold">Casablir</span>
+          </div>
+        </div>
+        <div class="resto-body">
+          <div class="resto-name">Dar Risk</div>
+          <div class="resto-loc">Alger</div>
+          <div class="resto-rating"><span class="star">★</span> 4.7 <span style="color:var(--muted)">(42)</span></div>
+          <p class="resto-desc">Dans un cadre raffiné au cœur de la Casbah, Dar Risk revisite les grands classiques de la cuisine algérienne. Couscous royal, tajine et ktaïfa...</p>
+          
+        </div>
+      </div>
+
+      <div class="resto-card">
+        <div class="resto-img">
+          <img src="../image/resto2.png" alt="Le Pêcheur">
+          <div class="resto-badges">
+            <span class="badge badge-red">-20% de remise</span>
+            <span class="badge badge-blue">Fruits de mer</span>
+            <span class="badge badge-green">Terrasse</span>
+          </div>
+        </div>
+        <div class="resto-body">
+          <div class="resto-name">Le Pêcheur</div>
+          <div class="resto-loc">Tipaza</div>
+          <div class="resto-rating"><span class="star">★</span> 4.2 <span style="color:var(--muted)">(38)</span></div>
+          <p class="resto-desc">Les pieds dans l'eau, face à la Méditerranée. Le Pêcheur propose le meilleur de la pêche du jour. Seiches grillées, loup de mer au four, calamars...</p>
+          
+        </div>
+      </div>
+
+      <div class="resto-card">
+        <div class="resto-img">
+          <img src="../image/resto3.png" alt="Le Cèdre Bleu">
+          <div class="resto-badges">
+            <span class="badge badge-red">-15% de remise</span>
+            <span class="badge badge-green">Cuisine kabyle</span>
+            <span class="badge badge-gold">Montagne</span>
+          </div>
+        </div>
+        <div class="resto-body">
+          <div class="resto-name">Le Cèdre Bleu</div>
+          <div class="resto-loc">Chréa</div>
+          <div class="resto-rating"><span class="star">★</span> 4.8 <span style="color:var(--muted)">(143)</span></div>
+          <p class="resto-desc">Niché dans les forêts du restaurant Le Cèdre Bleu vous accueille dans une ambiance chaleureuse de chalet montagnard. Spécialités kabyles...</p>
+        
+        </div>
+      </div>
+
+      <div class="resto-card">
+        <div class="resto-img">
+          <img src="../image/resto4.png" alt="Palais des Zibans">
+          <div class="resto-badges">
+            <span class="badge badge-red">-20% de remise</span>
+            <span class="badge badge-green">Sahara</span>
+            <span class="badge badge-gold">Mchour</span>
+          </div>
+        </div>
+        <div class="resto-body">
+          <div class="resto-name">Palais des Zibans</div>
+          <div class="resto-loc">Biskra</div>
+          <div class="resto-rating"><span class="star">★</span> 4.6 <span style="color:var(--muted)">(89)</span></div>
+          <p class="resto-desc">Une oasis de saveurs au cœur des Zibans. Décoration somptueuse inspirée de l'architecture msabite et les soirs dégust tout...</p>
+          
+        </div>
+      </div>
+
+      <div class="resto-card">
+        <div class="resto-img">
+          <img src="../image/resto5.png" alt="La Table d'Oran">
+          <div class="resto-badges">
+            <span class="badge badge-red">-20% de remise</span>
+            <span class="badge badge-blue">Vue panoramique</span>
+            <span class="badge badge-gold">Méditerranéen</span>
+          </div>
+        </div>
+        <div class="resto-body">
+          <div class="resto-name">La Table d'Oran</div>
+          <div class="resto-loc">Oran</div>
+          <div class="resto-rating"><span class="star">★</span> 4.4 <span style="color:var(--muted)">(103)</span></div>
+          <p class="resto-desc">Sur les hauteurs d'Oran avec une vue panoramique sur la mer, La Table d'Oran Saveurs méditerranéens et produits du terroir algérien...</p>
+          
+        </div>
+      </div>
+
+      <div class="resto-card">
+        <div class="resto-img">
+          <img src="../image/resto6.png" alt="El Djemina">
+          <div class="resto-badges">
+            <span class="badge badge-red">-25% de remise</span>
+            <span class="badge badge-green">Vue mer</span>
+            <span class="badge badge-gold">Pâtisseries</span>
+          </div>
+        </div>
+        <div class="resto-body">
+          <div class="resto-name">El Djemina</div>
+          <div class="resto-loc">Béjaïa</div>
+          <div class="resto-rating"><span class="star">★</span> 4.9 <span style="color:var(--muted)">(207)</span></div>
+          <p class="resto-desc">Au bord du Bhuret, face aux points suspendus de Constantine, El Djemina célèbre la cuisine de la ville des ponts. Chakchoukha constantine...</p>
+          
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- circuts  -->
+<section class="section circuits-section">
+  <div class="section-inner">
+    <div style="text-align:center;margin-bottom:48px">
+      <span class="section-tag">Circuits</span>
+      <h2 class="section-title">Voyages organisés</h2>
+      <p class="section-sub">Des circuits authentiques à travers l'Algérie</p>
+    </div>
+    <div class="circuits-grid">
+
+      <div class="circuit-card facile">
+        <div class="circuit-top">
+          <span class="circuit-tag tag-facile">Facile</span>
+          <div class="circuit-price">85 000 DZD</div>
+        </div>
+        <div class="circuit-name">Circuit des Aurès</div>
+        <p class="circuit-desc">7 jours à travers les montagnes des Aurès, de Batna à Timgad en passant par Shicult...</p>
+        <a class="btn-voir-plus">Voir plus</a>
+        <div class="circuit-tags">
+          <span class="ctag">Batna</span>
+          <span class="ctag">Khenchela</span>
+          <span class="ctag">Oum El Bouaghi</span>
+        </div>
+        <div class="circuit-meta">
+          <span>👥 7 pers.</span>
+          <span>📅 14 jours</span>
+          <span>🚌 Bus inclus</span>
+        </div>
+        <div class="circuit-date">📅 15 Juillet 2026</div>
+        <button class="btn-circuit">Réserver ce circuit</button>
+      </div>
+
+      <div class="circuit-card facile">
+        <div class="circuit-top">
+          <span class="circuit-tag tag-facile">Facile</span>
+          <div class="circuit-price">42 000 DZD</div>
+        </div>
+        <div class="circuit-name">La Kabylie Authentique</div>
+        <p class="circuit-desc">5 jours au cœur de la Kabylie – Tizi Ouzou, les montagnes du Djurdjura, le village d'A...</p>
+        <a class="btn-voir-plus">Voir plus</a>
+        <div class="circuit-tags">
+          <span class="ctag">Tizi Ouzou</span>
+          <span class="ctag">Béjaïa</span>
+          <span class="ctag">Bouira</span>
+        </div>
+        <div class="circuit-meta">
+          <span>👥 8 pers.</span>
+          <span>📅 5 jours</span>
+          <span>🚌 Bus inclus</span>
+        </div>
+        <div class="circuit-date">📅 22 Juillet 2026</div>
+        <button class="btn-circuit">Réserver ce circuit</button>
+      </div>
+
+      <div class="circuit-card sport">
+        <div class="circuit-top">
+          <span class="circuit-tag tag-sport">Sportif</span>
+          <div class="circuit-price">98 000 DZD</div>
+        </div>
+        <div class="circuit-name">Les oasis du Sud</div>
+        <p class="circuit-desc">10 jours de plongée dans le Sahara algérien – Ghardaïa à Mzusidas, Timirmun Youfs...</p>
+        <a class="btn-voir-plus">Voir plus</a>
+        <div class="circuit-tags">
+          <span class="ctag">Ghardaïa</span>
+          <span class="ctag">Adrar</span>
+          <span class="ctag">Biskra</span>
+        </div>
+        <div class="circuit-meta">
+          <span>👥 10 pers.</span>
+          <span>📅 10 jours</span>
+          <span>🐪 Chameau inclus</span>
+        </div>
+        <div class="circuit-date">📅 5 Août 2026</div>
+        <button class="btn-circuit">Réserver ce circuit</button>
+      </div>
+
+      <div class="circuit-card moyen">
+        <div class="circuit-top">
+          <span class="circuit-tag tag-moyen">Moyen</span>
+          <div class="circuit-price">32 000 DZD</div>
+        </div>
+        <div class="circuit-name">La côte des corsaires</div>
+        <p class="circuit-desc">4 jours le long de la côte Nord-Est – Annaba, les plages sauvages d'El B...</p>
+        <a class="btn-voir-plus">Voir plus</a>
+        <div class="circuit-tags">
+          <span class="ctag">Oran</span>
+          <span class="ctag">Aïn Témouchent</span>
+        </div>
+        <div class="circuit-meta">
+          <span>👥 4 pers.</span>
+          <span>📅 10 jours</span>
+          <span>🚗 Voiture incluse</span>
+        </div>
+        <div class="circuit-date">📅 12 Juillet 2026</div>
+        <button class="btn-circuit">Réserver ce circuit</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- les sessions -->
+<section class="section saisons-section">
+  <div class="section-inner">
+    <div style="text-align:center;margin-bottom:40px">
+      <span class="section-tag">Saisons algériennes</span>
+      <h2 class="section-title">Saisons algériennes</h2>
+      <p class="section-sub">Chaque saison, une expérience unique</p>
+    </div>
+    <div class="saisons-tabs">
+      <button class="saison-tab active" onclick="showSaison('ete',this)">☀️ Été</button>
+      <button class="saison-tab" onclick="showSaison('automne',this)">🍂 Automne</button>
+      <button class="saison-tab" onclick="showSaison('hiver',this)">❄️ Hiver</button>
+      <button class="saison-tab" onclick="showSaison('printemps',this)">🌸 Printemps</button>
+    </div>
+
+    <div class="saison-content active" id="saison-ete">
+      <div class="saison-img">
+        <img src="../image/beach.png" alt="Été">
+      </div>
+      <div class="saison-info">
+        <div class="saison-badge">☀️ Juin – Août</div>
+        <h3>Été</h3>
+        <p>Plages de la côte, criques secrètes et stations méditerranéennes. La saison idéale pour profiter de la mer et des festivités estivales algériennes.</p>
+        <ul class="saison-list">
+          <li>Plages de Tipaza, Béjaïa, Jijel</li>
+          <li>Festivals de musique à Timgad</li>
+          <li>Plongée au Cap Carbon</li>
+          <li>Nuits sur les terrasses</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="saison-content" id="saison-automne">
+      <div class="saison-img">
+        <img src="../image/autome.png" alt="Automne">
+      </div>
+      <div class="saison-info">
+        <div class="saison-badge">🍂 Septembre – Novembre</div>
+        <h3>Automne</h3>
+        <p>La saison dorée pour explorer les montagnes kabyles, les forêts de chênes-lièges et les oasis du Sud avant les grandes chaleurs.</p>
+        <ul class="saison-list">
+          <li>Randonnées en Kabylie</li>
+          <li>Récolte des olives à Tizi Ouzou</li>
+          <li>Circuits dans les Aurès</li>
+          <li>Températures idéales pour le Sahara</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="saison-content" id="saison-hiver">
+      <div class="saison-img">
+        <img src="../image/hiver.png" alt="Hiver">
+      </div>
+      <div class="saison-info">
+        <div class="saison-badge">❄️ Décembre – Février</div>
+        <h3>Hiver</h3>
+        <p>Chréa sous la neige, ski en Kabylie et nuits au coin du feu dans les chalets de montagne. Une Algérie méconnue et magnifique.</p>
+        <ul class="saison-list">
+          <li>Ski à Chréa et Tikjda</li>
+          <li>Chalets enneigés en Kabylie</li>
+          <li>Désert en conditions idéales</li>
+          <li>Souks et hammams traditionnels</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="saison-content" id="saison-printemps">
+      <div class="saison-img">
+        <img src="../image/spring.png" alt="Printemps">
+      </div>
+      <div class="saison-info">
+        <div class="saison-badge">🌸 Mars – Mai</div>
+        <h3>Printemps</h3>
+        <p>La nature algérienne en fleurs. Les champs d'orangers en Mitidja, les roses de Aïn Defla et la mer encore tranquille avant l'été.</p>
+        <ul class="saison-list">
+          <li>Fleurs sauvages en Mitidja</li>
+          <li>Birdwatching aux zones humides</li>
+          <li>Randonnées sur l'Atlas tellien</li>
+          <li>Températures douces partout</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- cta -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <h2>Prêt pour l'aventure ?</h2>
+    <p>Inscrivez-vous pour recevoir nos offres exclusives et nouveaux voyages</p>
+    <div class="cta-form">
+      <input type="email" placeholder="Votre email" id="cta-email">
+      <button onclick="ctaSubscribe()">Je m'inscris →</button>
+    </div>
+  </div>
+</section>
+
+<!-- footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <h3>Voyagez autrement</h3>
+      <p>Voyagez autrement en Algérie</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="../html/logements.html">Logements</a></li>
+        <li><a href="../html/promotion.html">Promotions</a></li>
+        <li><a href="#">Carte</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Suivez-nous</h4>
+      <ul>
+        <li><a href="#">📷 Instagram</a></li>
+        <li><a href="#">📘 Facebook</a></li>
+        <li><a href="#">▶️ YouTube</a></li>
+        <li><a href="#">+213 699455909</a></li>
+        <li><a href="#"> founded by : 
+          <span style="color:#d8edd8">Haddadj Manel </span> & 
+          <span style="color:#d8edd8">Chaou Slimane </span> & 
+          <span style="color:#d8edd8">Azgagh Sara</span> &
+          <span style="color:#d8edd8">Mezrag Lina </span>
+        </a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Restez informé</h4>
+      <div class="newsletter-footer">
+        <input type="email" placeholder="Votre email">
+        <button>→</button>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-logo-bg">DZbnb</span>
+    <p>© 2026 DZbnb. Tous droits réservés.</p>
+  </div>
+</footer>
+
+<script>
+
+function showSaison(id, btn) {
+  document.querySelectorAll('.saison-content').forEach(c => c.classList.remove('active'));
+  document.querySelectorAll('.saison-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('saison-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// inscrption 
+function ctaSubscribe() {
+  const input = document.getElementById('cta-email');
+  if (input.value && input.value.includes('@')) {
+    input.value = '✓ Inscrit avec succès !';
+    input.style.color = '#2d5a27';
+  } else {
+    input.placeholder = 'Email invalide…';
+  }
+}
+
+// session de l'ulisateur
+const user = JSON.parse(localStorage.getItem('dzbnb_user') || 'null');
+if (user) {
+  const btn = document.querySelector('.btn-connexion');
+  if (btn) {
+    btn.textContent = '👤 ' + (user.nom || user.email);
+    btn.onclick = () => {
+      if (confirm('Voulez-vous vous déconnecter ?')) {
+        localStorage.removeItem('dzbnb_user');
+        location.reload();
+      }
+    };
+  }
+}
+
+// Circuit buttons
+document.querySelectorAll('.btn-circuit').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const u = localStorage.getItem('dzbnb_user');
+    if (!u) {
+      window.location.href = '../html/connexion.html?redirect=' + encodeURIComponent(window.location.href);
+    } else {
+      alert('✅ Demande envoyée ! Notre équipe vous contactera sous 24h.');
+    }
+  });
+});
+</script>
+</body>
+</html>

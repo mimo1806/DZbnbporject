@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DZbnb – Découvrez l'Algérie Authentique</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../index.css">
+</head>
+<body>
+<!-- la barre du navigateur  -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <span class="logo-icon">🏠</span>
+      <span class="logo-dz">DZ</span><span class="logo-bnb">bnb</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#accueil" class="active">Accueil</a></li>
+      <li><a href="../html/logements.html">Logements</a></li>
+      <li><a href="../html/promotion.html">Promotions</a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="lang-btn">🇫🇷 FR <span class="chevron">▾</span></div>
+     <button class="btn-connexion" onclick="window.location.href='../html/connexion.html'"> <span>👤</span> Connexion
+</button>
+</button> 
+    </div>
+    <button class="burger" id="burger">☰</button>
+  </div>
+</nav>
+
+<!-- l'animation du sliderr  -->
+<section class="hero" id="accueil">
+  <div class="hero-slides">
+
+    <div class="slide active" style="background-image:url('../image/beach.png')">
+      <div class="slide-overlay"></div>
+      <div class="slide-content">
+        <span class="slide-badge">Wilayas d'Algérie</span>
+        <h1>Découvrez l'Algérie<br><em>Authentique</em></h1>
+        <p>Des montagnes de Chréa aux plages de Tipaza,<br>réservez votre séjour idéal.</p>
+        <a href="#logements" class="btn-explorer">Explorer →</a>
+      </div>
+    </div>
+
+    
+    <div class="slide" style="background-image:url('../image/desert.png')">
+      <div class="slide-overlay"></div>
+      <div class="slide-content">
+        <span class="slide-badge">Grand Sud</span>
+        <h1>Le Sahara vous<br><em>attend</em></h1>
+        <p>Des dunes de Taghit aux oasis de Timimoun,<br>vivez une aventure unique.</p>
+        <a href="#logements" class="btn-explorer">Explorer →</a>
+      </div>
+    </div>
+
+    
+    <div class="slide" style="background-image:url('../image/kabylemontain.png')">
+      <div class="slide-overlay"></div>
+      <div class="slide-content">
+        <span class="slide-badge">Kabylie & Montagne</span>
+        <h1>Villages perchés,<br><em>âme berbère</em></h1>
+        <p>Découvrez la Kabylie, ses gorges et ses traditions<br>millénaires.</p>
+        <a href="#logements" class="btn-explorer">Explorer →</a>
+      </div>
+    </div>
+  </div>
+
+  
+  <button class="slider-btn prev" id="prev">‹</button>
+  <button class="slider-btn next" id="next">›</button>
+  <div class="dots" id="dots">
+    <span class="dot active"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+  </div>
+</section>
+
+
+<section class="about-section">
+  <div class="about-grid">
+    <div class="about-img-wrap">
+      <img src="../image/luxury.png" alt="Maison algérienne" class="about-img">
+      <div class="about-badges">
+        <span class="badge-pill dark">Luxe</span>
+        <span class="badge-pill dark">Vérifié</span>
+        <span class="badge-pill dark">Nouveau</span>
+      </div>
+    </div>
+    <div class="about-text">
+      <span class="tag-label">À propos</span>
+      <h2>L'authenticité<br>algérienne</h2>
+      <div class="about-card">
+        <div class="about-card-body">
+          <p class="about-card-tag">À PROPOS</p>
+          <p>Nous sélectionnons les meilleurs logements à travers l'Algérie pour vous offrir une expérience de voyage inoubliable. Chaque hébergement est vérifié pour garantir qualité, confort et authenticité.</p>
+        </div>
+        <img src="../image/rep.png" alt="Thé algérien" class="about-card-img">
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="mvv-section">
+  <div class="mvv-grid">
+    <div class="mvv-card">
+      <div class="mvv-icon" style="background:#f5e6d3">🏨</div>
+      <h3>Notre mission</h3>
+      <p>Rendre le voyage en Algérie accessible à tous en connectant voyageurs et hôtes dans une démarche de qualité et de confiance mutuelle.</p>
+    </div>
+    <div class="mvv-card">
+      <div class="mvv-icon" style="background:#d8edd8">👁️</div>
+      <h3>Notre vision</h3>
+      <p>Devenir la référence du tourisme local en Algérie en valorisant le patrimoine culturel et l'hospitalité légendaire de notre pays.</p>
+    </div>
+    <div class="mvv-card">
+      <div class="mvv-icon" style="background:#d8edd8">💚</div>
+      <h3>Nos valeurs</h3>
+      <p>Authenticité, respect des cultures locales, développement durable et soutien aux communautés à travers toute l'Algérie.</p>
+    </div>
+  </div>
+</section>
+
+
+<section class="listings-section" id="logements">
+  <div class="listings-header">
+    <h2>Nos coups de cœur</h2>
+    <div class="listing-nav">
+      <button class="list-btn lp" id="lp">‹</button>
+      <button class="list-btn ln" id="ln">›</button>
+    </div>
+  </div>
+
+  <div class="listings-track-wrap">
+    <div class="listings-track" id="track">
+
+      <div class="listing-card">
+        <div class="listing-img-wrap">
+          <span class="listing-badge">Populaire</span>
+          <button class="fav-btn">♡</button>
+          <img src="../image/villa.png" alt="Villa">
+        </div>
+        <div class="listing-info">
+          <div class="listing-top">
+            <span class="listing-name">Villa Méditerranéenne</span>
+            <span class="listing-rating">⭐ 4.9</span>
+          </div>
+          <p class="listing-loc">📍 Tipaza</p>
+          <p class="listing-price"><strong>12 000 DZD</strong> /nuit</p>
+        </div>
+      </div>
+
+      <div class="listing-card">
+        <div class="listing-img-wrap">
+          <button class="fav-btn">♡</button>
+          <img src="../image/building.png" alt="Appartement">
+        </div>
+        <div class="listing-info">
+          <div class="listing-top">
+            <span class="listing-name">Appartement Centre-Ville</span>
+            <span class="listing-rating">⭐ 4.7</span>
+          </div>
+          <p class="listing-loc">📍 Alger</p>
+          <p class="listing-price"><strong>8 000 DZD</strong> /nuit</p>
+        </div>
+      </div>
+
+      <div class="listing-card">
+        <div class="listing-img-wrap">
+          <button class="fav-btn">♡</button>
+          <img src="../image/luxury.png" alt="Riad">
+        </div>
+        <div class="listing-info">
+          <div class="listing-top">
+            <span class="listing-name">Riad Traditionnel</span>
+            <span class="listing-rating">⭐ 4.8</span>
+          </div>
+          <p class="listing-loc">📍 Béjaïa</p>
+          <p class="listing-price"><strong>9 500 DZD</strong> /nuit</p>
+        </div>
+      </div>
+
+      <div class="listing-card">
+        <div class="listing-img-wrap">
+          <span class="listing-badge">Populaire</span>
+          <button class="fav-btn">♡</button>
+          <img src="../image/chera.png" alt="Chalet">
+        </div>
+        <div class="listing-info">
+          <div class="listing-top">
+            <span class="listing-name">Chalet Montagnard</span>
+            <span class="listing-rating">⭐ 4.8</span>
+          </div>
+          <p class="listing-loc">📍 Chréa</p>
+          <p class="listing-price"><strong>11 000 DZD</strong> /nuit</p>
+        </div>
+      </div>
+
+      <div class="listing-card">
+        <div class="listing-img-wrap">
+          <button class="fav-btn">♡</button>
+          <img src="../image/oran.png" alt="Bungalow">
+        </div>
+        <div class="listing-info">
+          <div class="listing-top">
+            <span class="listing-name">Bungalow de Plage</span>
+            <span class="listing-rating">⭐ 4.6</span>
+          </div>
+          <p class="listing-loc">📍 Oran</p>
+          <p class="listing-price"><strong>7 500 DZD</strong> /nuit</p>
+        </div>
+      </div>
+
+      <div class="listing-card">
+        <div class="listing-img-wrap">
+          <span class="listing-badge">Nouveau</span>
+          <button class="fav-btn">♡</button>
+          <img src="../image/kyble.png" alt="Maison Kabyle">
+        </div>
+        <div class="listing-info">
+          <div class="listing-top">
+            <span class="listing-name">Maison Kabyle</span>
+            <span class="listing-rating">⭐ 5.0</span>
+          </div>
+          <p class="listing-loc">📍 Tizi Ouzou</p>
+          <p class="listing-price"><strong>6 500 DZD</strong> /nuit</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+ 
+  <div class="progress-bar-wrap"><div class="progress-bar" id="progress"></div></div>
+
+  <div class="listings-cta">
+    <a href="../html/logements.html" class="btn-voir">Voir tous les logements →</a>
+  </div>
+</section>
+
+
+<section class="reviews-section">
+  <div class="reviews-header">
+    <span class="dot-orange"></span>
+    <span class="section-label">AVIS VOYAGEURS</span>
+  </div>
+  <h2>Ils ont aimé leur séjour</h2>
+
+  <div class="reviews-top">
+    <div class="review-card">
+      <div class="reviewer">
+        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah">
+        <div>
+          <strong>Sarah Benali</strong>
+          <span>Alger</span>
+        </div>
+      </div>
+      <div class="quote-icon">❝</div>
+      <p>Une expérience incroyable ! La villa à Tipaza était exactement comme sur les photos. Service impeccable du début à la fin.</p>
+      <div class="stars">★★★★★</div>
+    </div>
+
+    <div class="review-card">
+      <div class="reviewer">
+        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Karim">
+        <div>
+          <strong>Karim Messaoudi</strong>
+          <span>Oran</span>
+        </div>
+      </div>
+      <div class="quote-icon">❝</div>
+      <p>Première fois que j'utilise DZbnb et franchement, je suis conquis. Le chalet à Chréa était magnifique, tout était parfait.</p>
+      <div class="stars">★★★★★</div>
+    </div>
+
+    <div class="review-card">
+      <div class="reviewer">
+        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Amina">
+        <div>
+          <strong>Amina Djebbar</strong>
+          <span>Tizi Ouzou</span>
+        </div>
+      </div>
+      <div class="quote-icon">❝</div>
+      <p>Le riad à Béjaïa était un véritable bijou. L'accueil chaleureux, la décoration traditionnelle, j'ai adoré chaque instant.</p>
+      <div class="stars">★★★★★</div>
+    </div>
+  </div>
+
+
+  <div class="reviews-bottom">
+    <div class="review-big-img">
+      <img src="../image/seachealter.png" alt="Coucher de soleil">
+      <div class="review-big-label">
+        <strong>YACINE HAMADI</strong>
+        <span>Constantine</span>
+      </div>
+    </div>
+    <div class="review-big-text">
+      <div class="quote-icon">❝</div>
+      <p>Un week-end inoubliable au bungalow d'Oran. Le coucher de soleil depuis la terrasse était juste magique. Merci DZbnb !</p>
+      <div class="stars">★★★★★</div>
+    </div>
+  </div>
+</section>
+
+ <!--footer-->
+<div class="footer-hero">
+  <img src="../image/beach.png" alt="Sahara">
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <h3>Voyagez autrement</h3>
+      <p>Voyagez autrement en Algérie</p>
+    </div>
+    <div class="footer-col">
+      <h4>NAVIGATION</h4>
+      <ul>
+        <li><a href="../index.html">Accueil</a></li>
+        <li><a href="../html/logements.html">Logements</a></li>
+        <li><a href="../html/promotion.html">Promotions</a></li>
+        <li><a href="#">Carte</a></li>
+        <li><a href="#">Contact us</a></li>
+        <li><a href="#"> founded by : 
+          <span style="color:#d8edd8">Haddadj Manel </span> & 
+          <span style="color:#d8edd8">Chaou Slimane </span> & 
+          <span style="color:#d8edd8">Azgagh Sara</span> &
+          <span style="color:#d8edd8">Mezrag Lina </span>
+        </a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>SUIVEZ-NOUS</h4>
+      <ul>
+        <li><a href="#">📷 Instagram</a></li>
+        <li><a href="#">📘 Facebook</a></li>
+        <li><a href="#">▶️ YouTube</a></li>
+        <li><a href="#">+213 699455909</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>RESTEZ INFORMÉ</h4>
+      <div class="newsletter">
+        <input type="email" placeholder="Votre email">
+        <button>→</button>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-logo-bg">DZbnb</span>
+    <p>© 2026 DZbnb. Tous droits réservés.</p>
+  </div>
+</footer>
+<!-- SCRIPTS -->
+<script src="../index.js"></script>
+
+</body>
+</html>

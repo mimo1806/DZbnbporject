@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DZbnb — Tous les logements</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style/logements.css">
+<link rel="stylesheet" href="../index.css">
+</head>
+<script>
+  const user = JSON.parse(localStorage.getItem('dzbnb_user') || 'null');
+  if (user) {
+    const btn = document.querySelector('.btn-connexion');
+    if (btn) {
+      btn.textContent = '👤 ' + (user.nom || user.email);
+      btn.onclick = () => {
+        if (confirm('Voulez-vous vous déconnecter ?')) {
+          localStorage.removeItem('dzbnb_user');
+          location.reload();
+        }
+      };
+    }
+  }
+</script>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="../index.html" class="logo">
+      <span class="logo-icon">🏠</span>
+      <span class="logo-dz">DZ</span><span class="logo-bnb">bnb</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Accueil</a></li>
+      <li><a href="../html/logements.html" class="active">Logements</a></li>
+      <li><a href="../html/promotion.html">Promotions</a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="lang-btn">🇫🇷 FR ▾</div>
+     <button class="btn-connexion" onclick="window.location.href='../html/connexion.html'">
+  <span>👤</span> Connexion
+</button>
+    </div>
+  </div>
+</nav>
+
+<header class="page-header">
+  <h1>Tous les logements</h1>
+  <p>Trouvez votre havre de paix en Algérie</p>
+
+  <!-- la barre de recherche des logements  -->
+  <div class="search-bar">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="searchInput" placeholder="Rechercher par wilaya, nom...">
+  </div>
+</header>
+
+<!-- filtres selon le clients -->
+<section class="filters-section">
+  <div class="filters-inner">
+    <div class="filters-left">
+      <select id="filterWilaya" class="filter-select">
+        <option value="">Wilaya</option>
+        <option value="Tipaza">Tipaza</option>
+        <option value="Alger">Alger</option>
+        <option value="Oran">Oran</option>
+        <option value="Tizi Ouzou">Tizi Ouzou</option>
+        <option value="Béjaïa">Béjaïa</option>
+        <option value="Jijel">Jijel</option>
+        <option value="Mostaganem">Mostaganem</option>
+        <option value="Annaba">Annaba</option>
+        <option value="Ghardaïa">Ghardaïa</option>
+      </select>
+
+      <select id="filterType" class="filter-select">
+        <option value="">Type</option>
+        <option value="Villa">Villa</option>
+        <option value="Appartement">Appartement</option>
+        <option value="Studio">Studio</option>
+        <option value="Maison">Maison</option>
+        <option value="Chalet">Chalet</option>
+        <option value="Bungalow">Bungalow</option>
+        <option value="Riad">Riad</option>
+        <option value="Penthouse">Penthouse</option>
+        <option value="Gîte">Gîte</option>
+        <option value="Campement">Campement</option>
+        <option value="Écolodge">Écolodge</option>
+        <option value="Auberge">Auberge</option>
+      </select>
+
+      <button class="price-pill" data-max="5000" onclick="togglePrice(this)">
+        &lt; 5 000 DZD
+      </button>
+      <button class="price-pill" data-min="5000" data-max="10000" onclick="togglePrice(this)">
+        5 000 – 10 000 DZD
+      </button>
+      <button class="price-pill" data-min="10000" data-max="15000" onclick="togglePrice(this)">
+        10 000 – 15 000 DZD
+      </button>
+      <button class="price-pill" data-min="15000" onclick="togglePrice(this)">
+        &gt; 15 000 DZD
+      </button>
+    </div>
+
+    <div class="filters-right">
+      <select id="sortSelect" class="filter-select">
+        <option value="">Trier par</option>
+        <option value="prix-asc">Prix croissant</option>
+        <option value="prix-desc">Prix décroissant</option>
+        <option value="note-desc">Mieux notés</option>
+        <option value="commentaires-desc">Plus commentés</option>
+      </select>
+    </div>
+  </div>
+</section>
+
+  </main>
+<!-- les resultas  -->
+<div class="results-count">
+  <span id="countText">— logements trouvés</span>
+</div>
+
+
+<main class="listings-grid" id="grid"></main>
+
+<!-- Pagination -->
+<div class="pagination" id="pagination"></div>
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <h3>Voyagez autrement</h3>
+      <p>Voyagez autrement en Algérie</p>
+    </div>
+    <div class="footer-col">
+      <h4>NAVIGATION</h4>
+      <ul>
+        <li><a href="../index.html">Accueil</a></li>
+        <li><a href="../html/logements.html">Logements</a></li>
+        <li><a href="../html/promotion.html">Promotions</a></li>
+        <li><a href="#">Carte</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>SUIVEZ-NOUS</h4>
+      <ul>
+        <li><a href="#">📷 Instagram</a></li>
+        <li><a href="#">📘 Facebook</a></li>
+        <li><a href="#">▶️ YouTube</a></li>
+        <li><a href="#">+213 699455909</a></li>
+         <li><a href="#"> founded by : 
+          <span style="color:#d8edd8">Haddadj Manel </span> & 
+          <span style="color:#d8edd8">Chaou Slimane </span> & 
+          <span style="color:#d8edd8">Azgagh Sara</span> &
+          <span style="color:#d8edd8">Mezrag Lina </span>
+        </a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>RESTEZ INFORMÉ</h4>
+      <div class="newsletter">
+         <input type="email" placeholder="Votre email">
+        <button>→</button>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-logo-bg">DZbnb</span>
+    <p>© 2026 DZbnb. Tous droits réservés.</p>
+  </div>
+</footer>
+<script src="../javas/logements.js"></script>
+<script src="../javas/details.js"></script>
+
+</body>
+</html>

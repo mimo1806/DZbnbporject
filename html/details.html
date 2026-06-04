@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DZbnb — Détail logement</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style/details.css">
+<link rel="stylesheet" href="../index.css">
+</head>
+<script>
+  const user = JSON.parse(localStorage.getItem('dzbnb_user') || 'null');
+  if (user) {
+    const btn = document.querySelector('.btn-connexion');
+    if (btn) {
+      btn.textContent = '👤 ' + (user.nom || user.email);
+      btn.onclick = () => {
+        if (confirm('Voulez-vous vous déconnecter ?')) {
+          localStorage.removeItem('dzbnb_user');
+          location.reload();
+        }
+      };
+    }
+  }
+</script>
+<body>
+
+<!-- barre de navi -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="../index.html" class="logo">
+      <span class="logo-icon">🏠</span>
+      <span class="logo-dz">DZ</span><span class="logo-bnb">bnb</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Accueil</a></li>
+      <li><a href="../html/" class="active">Logements</a></li>
+      <li><a href="../html/promotion.html">Promotions</a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="lang-btn">🇫🇷 FR ▾</div>
+       <button class="btn-connexion" onclick="window.location.href='../html/connexion.html'">
+  <span>👤</span> Connexion
+</button>
+    </div>
+  </div>
+</nav>
+<!-- revenir au depart  -->
+<div class="back-bar">
+  <a href="../html/logements.html" class="back-link">← Retour aux logements</a>
+</div>
+
+>
+<div id="details-root"></div>
+<script src="../javas/details.js"></script>
+
+<div class="pagination" id="pagination"></div>
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <h3>Voyagez autrement</h3>
+      <p>Voyagez autrement en Algérie</p>
+    </div>
+    <div class="footer-col">
+      <h4>NAVIGATION</h4>
+      <ul>
+        <li><a href="../index.html">Accueil</a></li>
+        <li><a href="../html/logements.html">Logements</a></li>
+        <li><a href="../html/promotion.html">Promotions</a></li>
+        <li><a href="#">Carte</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>SUIVEZ-NOUS</h4>
+      <ul>
+        <li><a href="#">📷 Instagram</a></li>
+        <li><a href="#">📘 Facebook</a></li>
+        <li><a href="#">▶️ YouTube</a></li>
+           <li><a href="#"> founded by : 
+          <span style="color:#d8edd8">Haddadj Manel </span> & 
+          <span style="color:#d8edd8">Chaou Slimane </span> & 
+          <span style="color:#d8edd8">Azgagh Sara</span> &
+          <span style="color:#d8edd8">Mezrag Lina </span>
+        </a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>RESTEZ INFORMÉ</h4>
+      <div class="newsletter">
+         <input type="email" placeholder="Votre email">
+        <button>→</button>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-logo-bg">DZbnb</span>
+    <p>© 2026 DZbnb. Tous droits réservés.</p>
+  </div>
+</footer>
+
+</body>
+</html>

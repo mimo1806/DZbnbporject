@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DZbnb — Connexion</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style/logements.css">
+<style>
+  :root {
+    --green: #2d5a27;
+    --green-light: #4a7c42;
+    --green-pale: #e8f0e6;
+    --bg: #f0ebe3;
+    --white: #ffffff;
+    --text: #1a1a1a;
+    --muted: #6b6b6b;
+    --border: #e0ddd8;
+    --radius: 14px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 32px 16px 20px;
+    background: #f0ebe3;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* background image blur */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: url('../image/connexion.png') center/cover no-repeat;
+    filter: blur(2px) brightness(.92);
+    z-index: 0;
+  }
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: rgba(240,235,227,0.55);
+    z-index: 1;
+  }
+
+  /* all content above bg */
+  .logo-top, .card, .security-footer { position: relative; z-index: 2; }
+
+  /* ── LOGO ── */
+  .logo-top {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    margin-bottom: 24px;
+  }
+  .logo-icon {
+    width: 36px; height: 36px;
+    background: var(--green);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+  }
+  .logo-text { font-family: 'Playfair Display', serif; font-size: 22px; }
+  .logo-text .dz { color: var(--text); font-weight: 700; }
+  .logo-text .bnb { color: #b5651d; font-weight: 600; }
+
+  /* ── CARD ── */
+  .card {
+    background: rgba(255,255,255,0.97);
+    border-radius: 20px;
+    padding: 32px 36px 28px;
+    width: 100%;
+    max-width: 480px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+  }
+
+  /* ── TABS ── */
+  .tabs {
+    display: flex;
+    background: #f2ede8;
+    border-radius: 50px;
+    padding: 4px;
+    margin-bottom: 28px;
+  }
+  .tab {
+    flex: 1;
+    text-align: center;
+    padding: 9px 0;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    color: var(--muted);
+    transition: all .25s;
+    border: none;
+    background: none;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .tab.active {
+    background: var(--white);
+    color: var(--text);
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  /* ── PANELS ── */
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text);
+    text-align: center;
+    margin-bottom: 4px;
+  }
+  .card-subtitle {
+    text-align: center;
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+
+  /* ── STEP INDICATOR ── */
+  .steps {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    margin-bottom: 20px;
+  }
+  .step-dot {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px;
+    font-weight: 600;
+    border: 2px solid var(--border);
+    color: var(--muted);
+    background: var(--white);
+    transition: all .3s;
+  }
+  .step-dot.active { background: var(--green); border-color: var(--green); color: white; }
+  .step-dot.done   { background: var(--green); border-color: var(--green); color: white; font-size: 15px; }
+  .step-line {
+    width: 40px; height: 2px;
+    background: var(--border);
+    transition: background .3s;
+  }
+  .step-line.done { background: var(--green); }
+
+  .step-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+
+  /* ── FORM ── */
+  .form-group { margin-bottom: 16px; }
+  .form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: var(--text);
+  }
+  .input-wrap {
+    position: relative;
+  }
+  .input-wrap .icon {
+    position: absolute;
+    left: 12px; top: 50%;
+    transform: translateY(-50%);
+    color: var(--muted);
+    font-size: 15px;
+    pointer-events: none;
+  }
+  .input-wrap input,
+  .input-wrap select,
+  .input-wrap textarea {
+    width: 100%;
+    padding: 12px 14px 12px 36px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--text);
+    background: #faf9f7;
+    transition: border-color .2s, box-shadow .2s;
+    outline: none;
+  }
+  .input-wrap input:focus,
+  .input-wrap select:focus,
+  .input-wrap textarea:focus {
+    border-color: var(--green);
+    box-shadow: 0 0 0 3px rgba(45,90,39,0.1);
+    background: white;
+  }
+  .input-wrap input::placeholder,
+  .input-wrap textarea::placeholder { color: #bbb; }
+  .input-wrap .eye-btn {
+    position: absolute;
+    right: 12px; top: 50%;
+    transform: translateY(-50%);
+    background: none; border: none;
+    cursor: pointer; color: var(--muted);
+    font-size: 16px;
+    padding: 0;
+  }
+  /* no icon padding */
+  .input-wrap.no-icon input,
+  .input-wrap.no-icon select,
+  .input-wrap.no-icon textarea { padding-left: 14px; }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+  textarea.input-wrap { resize: vertical; }
+  .input-wrap textarea { padding: 12px 14px; min-height: 90px; resize: vertical; }
+  .char-count { text-align: right; font-size: 11px; color: var(--muted); margin-top: 3px; }
+
+  select { appearance: none; }
+
+  /* forgot */
+  .forgot { text-align: right; margin-top: -8px; margin-bottom: 14px; }
+  .forgot a { font-size: 13px; color: var(--green); text-decoration: none; font-weight: 500; }
+
+  /* buttons */
+  .btn-main {
+    width: 100%;
+    padding: 14px;
+    background: var(--green);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background .2s, transform .1s;
+    margin-bottom: 16px;
+  }
+  .btn-main:hover { background: var(--green-light); }
+  .btn-main:active { transform: scale(.99); }
+
+  .btn-secondary {
+    flex: 1;
+    padding: 13px;
+    background: none;
+    color: var(--text);
+    border: 1.5px solid var(--border);
+    border-radius: 50px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: border-color .2s;
+  }
+  .btn-secondary:hover { border-color: var(--text); }
+
+  .btn-row { display: flex; gap: 10px; }
+  .btn-row .btn-main { margin-bottom: 0; }
+
+  .switch-link {
+    text-align: center;
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 14px;
+  }
+  .switch-link a { color: var(--green); font-weight: 600; text-decoration: none; }
+
+  /* checkbox */
+  .check-row {
+    display: flex; align-items: flex-start; gap: 8px;
+    font-size: 13px; color: var(--muted);
+    margin-bottom: 20px;
+  }
+  .check-row input { accent-color: var(--green); margin-top: 2px; width: 16px; height: 16px; cursor: pointer; flex-shrink: 0; }
+  .check-row label { cursor: pointer; line-height: 1.5; }
+  .check-row a { color: var(--green); }
+
+  /* ── SECURITY FOOTER ── */
+  .security-footer {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 12px;
+    color: rgba(60,50,40,0.65);
+    max-width: 380px;
+    line-height: 1.5;
+  }
+
+  /* ── SUCCESS ── */
+  .success-box {
+    text-align: center;
+    padding: 12px 0 8px;
+  }
+  .success-box .s-icon {
+    font-size: 52px;
+    margin-bottom: 16px;
+    animation: popIn .5s cubic-bezier(.34,1.56,.64,1) both;
+  }
+  @keyframes popIn {
+    from { transform: scale(0); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+  }
+  .success-box h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    color: var(--green);
+    margin-bottom: 8px;
+  }
+  .success-box p { color: var(--muted); font-size: 14px; line-height: 1.6; margin-bottom: 24px; }
+
+  @media (max-width: 500px) {
+    .card { padding: 24px 20px 20px; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<a href="../index.html" class="logo-top">
+  <div class="logo-icon">🏠</div>
+  <div class="logo-text"><span class="dz">DZ</span><span class="bnb">bnb</span></div>
+</a>
+
+<div class="card">
+
+  <!-- TABS -->
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('login')">Connexion</button>
+    <button class="tab" onclick="switchTab('register')">Inscription</button>
+  </div>
+
+  <!-- ══ LOGIN PANEL ══ -->
+  <div class="panel active" id="panel-login">
+    <h2 class="card-title">Content de vous revoir</h2>
+    <p class="card-subtitle">Connectez-vous pour gérer vos réservations</p>
+
+    <div class="form-group">
+      <label>Email</label>
+      <div class="input-wrap">
+        <span class="icon">✉️</span>
+        <input type="email" id="login-email" placeholder="votre@email.com">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Mot de passe</label>
+      <div class="input-wrap">
+        <span class="icon">🔒</span>
+        <input type="password" id="login-pwd" placeholder="Votre mot de passe">
+        <button class="eye-btn" onclick="togglePwd('login-pwd',this)">👁</button>
+      </div>
+    </div>
+
+    <div class="forgot"><a href="#">Mot de passe oublié ?</a></div>
+
+    <button class="btn-main" onclick="doLogin()">Se connecter</button>
+
+    <div class="switch-link">Pas encore de compte ? <a href="#" onclick="switchTab('register')">S'inscrire</a></div>
+  </div>
+
+  <!--le registre  -->
+  <div class="panel" id="panel-register">
+
+    <!-- etape 1 -->
+    <div id="reg-step-1">
+      <h2 class="card-title">Créez votre compte</h2>
+      <p class="card-subtitle">Rejoignez la communauté DZbnb</p>
+
+      <div class="steps">
+        <div class="step-dot active" id="sd1">1</div>
+        <div class="step-line" id="sl1"></div>
+        <div class="step-dot" id="sd2">2</div>
+        <div class="step-line" id="sl2"></div>
+        <div class="step-dot" id="sd3">3</div>
+      </div>
+
+      <div class="step-label">Étape 1/3 — Informations personnelles</div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Prénom</label>
+          <div class="input-wrap no-icon"><input type="text" id="r-prenom" placeholder="Votre prénom"></div>
+        </div>
+        <div class="form-group">
+          <label>Nom</label>
+          <div class="input-wrap no-icon"><input type="text" id="r-nom" placeholder="Votre nom"></div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Âge</label>
+          <div class="input-wrap no-icon"><input type="number" id="r-age" placeholder="Votre âge" min="18" max="99"></div>
+        </div>
+        <div class="form-group">
+          <label>Genre</label>
+          <div class="input-wrap no-icon">
+            <select id="r-genre">
+              <option value="" disabled selected>Genre</option>
+              <option>Homme</option>
+              <option>Femme</option>
+              <option>Autre</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Téléphone</label>
+        <div class="input-wrap no-icon"><input type="tel" id="r-tel" placeholder="+213 5XX XX XX XX"></div>
+      </div>
+      <div class="form-group">
+        <label>Numéro d'identité</label>
+        <div class="input-wrap no-icon"><input type="text" id="r-id" placeholder="Numéro de pièce d'identité"></div>
+      </div>
+
+      <button class="btn-main" onclick="goStep(2)">Continuer</button>
+      <div class="switch-link">Déjà un compte ? <a href="#" onclick="switchTab('login')">Se connecter</a></div>
+    </div>
+
+    <!-- etape 2 -->
+    <div id="reg-step-2" style="display:none">
+      <h2 class="card-title">Créez votre compte</h2>
+      <p class="card-subtitle">Rejoignez la communauté DZbnb</p>
+
+      <div class="steps">
+        <div class="step-dot done" id="sd1b">✓</div>
+        <div class="step-line done" id="sl1b"></div>
+        <div class="step-dot active" id="sd2b">2</div>
+        <div class="step-line" id="sl2b"></div>
+        <div class="step-dot" id="sd3b">3</div>
+      </div>
+
+      <div class="step-label">Étape 2/3 — Localisation &amp; Statut</div>
+
+      <div class="form-group">
+        <label>Wilaya de résidence</label>
+        <div class="input-wrap no-icon">
+          <select id="r-wilaya">
+            <option value="" disabled selected>Sélectionnez votre wilaya</option>
+            <option>Adrar</option><option>Chlef</option><option>Laghouat</option>
+            <option>Oum El Bouaghi</option><option>Batna</option><option>Béjaïa</option>
+            <option>Biskra</option><option>Béchar</option><option>Blida</option>
+            <option>Bouira</option><option>Tamanrasset</option><option>Tébessa</option>
+            <option>Tlemcen</option><option>Tiaret</option><option>Tizi Ouzou</option>
+            <option>Alger</option><option>Djelfa</option><option>Jijel</option>
+            <option>Sétif</option><option>Saïda</option><option>Skikda</option>
+            <option>Sidi Bel Abbès</option><option>Annaba</option><option>Guelma</option>
+            <option>Constantine</option><option>Médéa</option><option>Mostaganem</option>
+            <option>M'Sila</option><option>Mascara</option><option>Ouargla</option>
+            <option>Oran</option><option>El Bayadh</option><option>Illizi</option>
+            <option>Bordj Bou Arréridj</option><option>Boumerdès</option>
+            <option>El Tarf</option><option>Tindouf</option><option>Tissemsilt</option>
+            <option>El Oued</option><option>Khenchela</option><option>Souk Ahras</option>
+            <option>Tipaza</option><option>Mila</option><option>Aïn Defla</option>
+            <option>Naâma</option><option>Aïn Témouchent</option><option>Ghardaïa</option>
+            <option>Relizane</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Situation familiale</label>
+        <div class="input-wrap no-icon">
+          <select id="r-famille">
+            <option value="" disabled selected>Situation familiale</option>
+            <option>Célibataire</option>
+            <option>Marié(e)</option>
+            <option>Divorcé(e)</option>
+            <option>Veuf/Veuve</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Bio</label>
+        <div class="input-wrap no-icon">
+          <textarea id="r-bio" placeholder="Parlez-nous un peu de vous..." maxlength="500" oninput="updateChar()"></textarea>
+        </div>
+        <div class="char-count"><span id="char-c">0</span>/500</div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn-secondary" onclick="goStep(1)">Retour</button>
+        <button class="btn-main" onclick="goStep(3)">Continuer</button>
+      </div>
+      <div class="switch-link" style="margin-top:14px">Déjà un compte ? <a href="#" onclick="switchTab('login')">Se connecter</a></div>
+    </div>
+
+    <!-- etape 3 -->
+    <div id="reg-step-3" style="display:none">
+      <h2 class="card-title">Créez votre compte</h2>
+      <p class="card-subtitle">Rejoignez la communauté DZbnb</p>
+
+      <div class="steps">
+        <div class="step-dot done">✓</div>
+        <div class="step-line done"></div>
+        <div class="step-dot done">✓</div>
+        <div class="step-line done"></div>
+        <div class="step-dot active">3</div>
+      </div>
+
+      <div class="step-label">Étape 3/3 — Compte &amp; Validation</div>
+
+      <div class="form-group">
+        <label>Email</label>
+        <div class="input-wrap">
+          <span class="icon">✉️</span>
+          <input type="email" id="r-email" placeholder="votre@email.com">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Mot de passe</label>
+        <div class="input-wrap">
+          <span class="icon">🔒</span>
+          <input type="password" id="r-pwd" placeholder="Votre mot de passe">
+          <button class="eye-btn" onclick="togglePwd('r-pwd',this)">👁</button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Confirmer le mot de passe</label>
+        <div class="input-wrap">
+          <span class="icon">🔒</span>
+          <input type="password" id="r-pwd2" placeholder="Répétez votre mot de passe">
+          <button class="eye-btn" onclick="togglePwd('r-pwd2',this)">👁</button>
+        </div>
+      </div>
+
+      <div class="check-row" style="margin-bottom:20px">
+        <input type="checkbox" id="r-terms">
+        <label for="r-terms">J'accepte les <a href="#">conditions générales d'utilisation</a></label>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn-secondary" onclick="goStep(2)">Retour</button>
+        <button class="btn-main" onclick="doRegister()">Créer mon compte</button>
+      </div>
+      <div class="switch-link" style="margin-top:14px">Déjà un compte ? <a href="#" onclick="switchTab('login')">Se connecter</a></div>
+    </div>
+
+    <!-- SUCCESS -->
+    <div id="reg-success" style="display:none">
+      <div class="success-box">
+        <div class="s-icon">🎉</div>
+        <h2>Bienvenue sur DZbnb !</h2>
+        <p>Votre compte a été créé avec succès.<br>Vous pouvez maintenant réserver vos logements préférés.</p>
+        <button class="btn-main" onclick="afterRegister()">Continuer vers l'accueil</button>
+      </div>
+    </div>
+
+  </div><!-- /panel-register -->
+
+</div><!-- /card -->
+
+<div class="security-footer">
+  🔒 Vos données sont cryptées et sécurisées. Nous ne stockons jamais vos informations bancaires.
+</div>
+
+<script>
+  /* ── tableau du switch  ── */
+  function switchTab(tab) {
+    document.querySelectorAll('.tab').forEach((t,i) => {
+      t.classList.toggle('active', (i===0 && tab==='login') || (i===1 && tab==='register'));
+    });
+    document.getElementById('panel-login').classList.toggle('active', tab==='login');
+    document.getElementById('panel-register').classList.toggle('active', tab==='register');
+  }
+
+  /* ── mot de passe  ── */
+  function togglePwd(id, btn) {
+    const el = document.getElementById(id);
+    if (el.type === 'password') { el.type = 'text'; btn.textContent = '🙈'; }
+    else { el.type = 'password'; btn.textContent = '👁'; }
+  }
+
+  /* ── etape navigation  ── */
+  function goStep(n) {
+    // validate current step
+    if (n === 2) {
+      const prenom = document.getElementById('r-prenom').value.trim();
+      const nom    = document.getElementById('r-nom').value.trim();
+      const age    = document.getElementById('r-age').value.trim();
+      const tel    = document.getElementById('r-tel').value.trim();
+      const idNum  = document.getElementById('r-id').value.trim();
+      if (!prenom || !nom || !age || !tel || !idNum) {
+        alert('Veuillez remplir tous les champs obligatoires.'); return;
+      }
+    }
+    if (n === 3) {
+      const wilaya  = document.getElementById('r-wilaya').value;
+      const famille = document.getElementById('r-famille').value;
+      if (!wilaya || !famille) {
+        alert('Veuillez sélectionner votre wilaya et situation familiale.'); return;
+      }
+    }
+
+    document.getElementById('reg-step-1').style.display = n===1 ? 'block' : 'none';
+    document.getElementById('reg-step-2').style.display = n===2 ? 'block' : 'none';
+    document.getElementById('reg-step-3').style.display = n===3 ? 'block' : 'none';
+  }
+
+  /* ── la bio ── */
+  function updateChar() {
+    document.getElementById('char-c').textContent = document.getElementById('r-bio').value.length;
+  }
+
+  /* ── se connecter  ── */
+  function doLogin() {
+    const email = document.getElementById('login-email').value.trim();
+    const pwd   = document.getElementById('login-pwd').value;
+    if (!email || !pwd) { alert('Veuillez remplir tous les champs.'); return; }
+
+    const btn = document.querySelector('#panel-login .btn-main');
+    btn.disabled = true; btn.textContent = '⏳ Connexion…';
+
+    setTimeout(() => {
+    
+      localStorage.setItem('dzbnb_user', JSON.stringify({ email, nom: email.split('@')[0] }));
+     
+      const redirect = new URLSearchParams(window.location.search).get('redirect') || '../index.html';
+      window.location.href = redirect;
+    }, 1200);
+  }
+
+  /* ── s'inscrire  ── */
+  function doRegister() {
+    const email = document.getElementById('r-email').value.trim();
+    const pwd   = document.getElementById('r-pwd').value;
+    const pwd2  = document.getElementById('r-pwd2').value;
+    const terms = document.getElementById('r-terms').checked;
+
+    if (!email || !pwd || !pwd2) { alert('Veuillez remplir tous les champs.'); return; }
+    if (pwd !== pwd2) { alert('Les mots de passe ne correspondent pas.'); return; }
+    if (pwd.length < 6) { alert('Le mot de passe doit contenir au moins 6 caractères.'); return; }
+    if (!terms) { alert("Veuillez accepter les conditions générales d'utilisation."); return; }
+
+    const btn = document.querySelector('#reg-step-3 .btn-main');
+    btn.disabled = true; btn.textContent = '⏳ Création…';
+
+    setTimeout(() => {
+      const user = {
+        email,
+        nom:    document.getElementById('r-nom').value + ' ' + document.getElementById('r-prenom').value,
+        wilaya: document.getElementById('r-wilaya').value,
+        tel:    document.getElementById('r-tel').value,
+      };
+      localStorage.setItem('dzbnb_user', JSON.stringify(user));
+
+      document.getElementById('reg-step-3').style.display = 'none';
+      document.getElementById('reg-success').style.display = 'block';
+    }, 1400);
+  }
+
+  function afterRegister() {
+    const redirect = new URLSearchParams(window.location.search).get('redirect') || '../index.html';
+    window.location.href = redirect;
+  }
+
+  /* ── switcher entre les tableau  ── */
+  if (new URLSearchParams(window.location.search).get('tab') === 'register') {
+    switchTab('register');
+  }
+</script>
+</body>
+</html>
